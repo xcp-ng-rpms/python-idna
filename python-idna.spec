@@ -5,8 +5,8 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        0.8
-Release:        2%{?dist}
+Version:        1.0
+Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -29,7 +29,7 @@ different results from the earlier standard from 2003.
 
 The library is also intended to act as a suitable drop-in replacement for the
 "encodings.idna" module that comes with the Python standard library but
-currently only supports the 2003 specification.
+currently only supports the older 2003 specification.
 
 %if 0%{?with_python3}
 %package -n python3-%{srcname}
@@ -38,12 +38,12 @@ Summary:        Internationalized Domain Names in Applications (IDNA)
 %description -n python3-%{srcname}
 A library to support the Internationalised Domain Names in Applications (IDNA)
 protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
-version of the protocol is often referred to as “IDNA2008” and can produce
+version of the protocol is often referred to as "IDNA2008" and can produce
 different results from the earlier standard from 2003.
 
 The library is also intended to act as a suitable drop-in replacement for the
-“encodings.idna” module that comes with the Python standard library but
-currently only supports the 2003 specification.
+"encodings.idna" module that comes with the Python standard library but
+currently only supports the older 2003 specification.
 %endif # with_python3
 
 %prep
@@ -93,18 +93,21 @@ popd
 
 
 %files
-%doc README.rst HISTORY.rst
+%doc README.rst HISTORY.rst LICENSE.rst
 %{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 
 %if 0%{?with_python3}
 %files -n python3-%{srcname}
-%doc README.rst HISTORY.rst
+%doc README.rst HISTORY.rst LICENSE.rst
 %{python3_sitelib}/%{srcname}
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 %endif # with_python3
 
 %changelog
+* Wed Dec 31 2014 tom.prince@ualberta.net - 1.0-1
+- Bump version.
+
 * Mon Oct 27 2014 tom.prince@ualberta.net - 0.8-3
 - Update licences.
 
