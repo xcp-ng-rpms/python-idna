@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -105,6 +105,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Wed Dec 31 2014 tom.prince@ualberta.net - 1.0-1
 - Bump version.
 
