@@ -5,13 +5,13 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        2.0
-Release:        4%{?dist}
+Version:        2.1
+Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
 URL:            https://github.com/kjd/idna
-Source0:        https://pypi.python.org/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
@@ -63,18 +63,14 @@ cp -a . %{py3dir}
 
 %if 0%{?with_python3}
 pushd %{py3dir}
-# Set LANG when building with python 3 due to
-# https://github.com/kjd/idna/pull/4
-LANG=en_US.UTF-8 %{__python3} setup.py build
+%{__python3} setup.py build
 popd
 %endif # with_python3
 
 %install
 %if 0%{?with_python3}
 pushd %{py3dir}
-# Set LANG when building with python 3 due to
-# https://github.com/kjd/idna/pull/4
-LANG=en_US.UTF-8 %{__python3} setup.py install --skip-build --root %{buildroot}
+%{__python3} setup.py install --skip-build --root %{buildroot}
 popd
 %endif # with_python3
 
@@ -85,9 +81,7 @@ popd
 
 %if 0%{?with_python3}
 pushd %{py3dir}
-# Set LANG when building with python 3 due to
-# https://github.com/kjd/idna/pull/4
-LANG=en_US.UTF-8 %{__python3} setup.py test
+%{__python3} setup.py test
 popd
 %endif # with_python3
 
@@ -105,6 +99,9 @@ popd
 %endif # with_python3
 
 %changelog
+* Mon Oct 17 2016 tom.prince@ualberta.net - 2.1-1
+- Bump version.
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0-4
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
