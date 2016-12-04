@@ -1,7 +1,4 @@
-%if 0%{?fedora}
 %global with_python3 1
-%endif
-
 %global srcname idna
 
 Name:           python-%{srcname}
@@ -17,8 +14,8 @@ BuildArch:      noarch
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 %if 0%{?with_python3}
-BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
+BuildRequires:  python%{python3_pkgversion}-devel
+BuildRequires:  python%{python3_pkgversion}-setuptools
 %endif # with_python3
 
 %description
@@ -31,11 +28,26 @@ The library is also intended to act as a suitable drop-in replacement for the
 "encodings.idna" module that comes with the Python standard library but
 currently only supports the older 2003 specification.
 
-%if 0%{?with_python3}
-%package -n python3-%{srcname}
+%package -n python2-%{srcname}
 Summary:        Internationalized Domain Names in Applications (IDNA)
+%{?python_provide:%python_provide python2-%{srcname}}
 
-%description -n python3-%{srcname}
+%description -n python2-%{srcname}
+A library to support the Internationalised Domain Names in Applications (IDNA)
+protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
+version of the protocol is often referred to as "IDNA2008" and can produce
+different results from the earlier standard from 2003.
+
+The library is also intended to act as a suitable drop-in replacement for the
+"encodings.idna" module that comes with the Python standard library but
+currently only supports the older 2003 specification.
+
+%if 0%{?with_python3}
+%package -n python%{python3_pkgversion}-%{srcname}
+Summary:        Internationalized Domain Names in Applications (IDNA)
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
+
+%description -n python%{python3_pkgversion}-%{srcname}
 A library to support the Internationalised Domain Names in Applications (IDNA)
 protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
 version of the protocol is often referred to as "IDNA2008" and can produce
@@ -51,54 +63,48 @@ currently only supports the older 2003 specification.
 # Remove bundled egg-info
 rm -rf %{srcname}.egg-info
 
-%if 0%{?with_python3}
-rm -rf %{py3dir}
-cp -a . %{py3dir}
-%endif # with_python3
-
-
-
 %build
-%{__python2} setup.py build
+%py2_build
 
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py build
-popd
+%py3_build
 %endif # with_python3
 
 %install
 %if 0%{?with_python3}
-pushd %{py3dir}
-%{__python3} setup.py install --skip-build --root %{buildroot}
-popd
+%py3_install
 %endif # with_python3
 
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
 
 %check
 %{__python2} setup.py test
 
 %if 0%{?with_python3}
-pushd %{py3dir}
 %{__python3} setup.py test
-popd
 %endif # with_python3
 
 
-%files
-%doc README.rst HISTORY.rst LICENSE.rst
+%files -n python2-%{srcname}
+%license LICENSE.rst
+%doc README.rst HISTORY.rst
 %{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 
 %if 0%{?with_python3}
-%files -n python3-%{srcname}
-%doc README.rst HISTORY.rst LICENSE.rst
+%files -n python%{python3_pkgversion}-%{srcname}
+%license LICENSE.rst
+%doc README.rst HISTORY.rst
 %{python3_sitelib}/%{srcname}
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 %endif # with_python3
 
 %changelog
+* Mon Nov 28 2016 Orion Poplawski <orion@cora.nwra.com> - 2.1-2
+- Ship python2-idna
+- Enable python3 for EPEL
+- Modernize spec
+
 * Mon Oct 17 2016 tom.prince@ualberta.net - 2.1-1
 - Bump version.
 
