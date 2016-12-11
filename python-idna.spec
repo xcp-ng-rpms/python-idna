@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        2.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -100,6 +100,9 @@ rm -rf %{srcname}.egg-info
 %endif # with_python3
 
 %changelog
+* Fri Dec 09 2016 Charalampos Stratakis <cstratak@redhat.com> - 2.1-3
+- Rebuild for Python 3.6
+
 * Mon Nov 28 2016 Orion Poplawski <orion@cora.nwra.com> - 2.1-2
 - Ship python2-idna
 - Enable python3 for EPEL
