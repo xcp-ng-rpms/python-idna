@@ -2,7 +2,7 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        2.3
+Version:        2.4
 Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
@@ -100,6 +100,9 @@ rm -rf %{srcname}.egg-info
 %endif # with_python3
 
 %changelog
+* Wed Mar 01 2017 Jeremy Cline <jeremy@jcline.org> - 2.4-1
+- Update to version 2.4
+
 * Tue Feb 28 2017 Paul Wouters <pwouters@redhat.com> - 2.3-1
 - Resolves: rhbz#1427499 Update to 2.3 for IDNAError bugfix and memory improvement
 
