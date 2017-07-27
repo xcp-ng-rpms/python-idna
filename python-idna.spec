@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        2.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -100,6 +100,9 @@ rm -rf %{srcname}.egg-info
 %endif # with_python3
 
 %changelog
+* Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.5-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Tue Mar 07 2017 Jeremy Cline <jeremy@jcline.org> - 2.5-1
 - Update to version 2.5
 
