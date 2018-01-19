@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        2.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -12,7 +12,7 @@ Source0:        https://pypi.io/packages/source/i/%{srcname}/%{srcname}-%{versio
 BuildArch:      noarch
 
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 %if 0%{?with_python3}
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
@@ -100,6 +100,10 @@ rm -rf %{srcname}.egg-info
 %endif # with_python3
 
 %changelog
+* Fri Jan 19 2018 Iryna Shcherbina <ishcherb@redhat.com> - 2.5-3
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.5-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
