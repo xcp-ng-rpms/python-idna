@@ -2,8 +2,8 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        2.7
-Release:        4%{?dist}
+Version:        2.8
+Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -13,10 +13,8 @@ BuildArch:      noarch
 
 BuildRequires:  python2-devel
 BuildRequires:  python2-setuptools
-%if 0%{?with_python3}
-BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
-%endif # with_python3
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 
 %description
 A library to support the Internationalised Domain Names in Applications (IDNA)
@@ -42,12 +40,11 @@ The library is also intended to act as a suitable drop-in replacement for the
 "encodings.idna" module that comes with the Python standard library but
 currently only supports the older 2003 specification.
 
-%if 0%{?with_python3}
-%package -n python%{python3_pkgversion}-%{srcname}
+%package -n python3-%{srcname}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 %{?python_provide:%python_provide python%{python3_pkgversion}-%{srcname}}
 
-%description -n python%{python3_pkgversion}-%{srcname}
+%description -n python3-%{srcname}
 A library to support the Internationalised Domain Names in Applications (IDNA)
 protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
 version of the protocol is often referred to as "IDNA2008" and can produce
@@ -56,33 +53,23 @@ different results from the earlier standard from 2003.
 The library is also intended to act as a suitable drop-in replacement for the
 "encodings.idna" module that comes with the Python standard library but
 currently only supports the older 2003 specification.
-%endif # with_python3
 
 %prep
-%setup -q -n %{srcname}-%{version}
+%autosetup -p1 -n %{srcname}-%{version}
 # Remove bundled egg-info
 rm -rf %{srcname}.egg-info
 
 %build
 %py2_build
-
-%if 0%{?with_python3}
 %py3_build
-%endif # with_python3
 
 %install
-%if 0%{?with_python3}
 %py3_install
-%endif # with_python3
-
 %py2_install
 
 %check
 %{__python2} setup.py test
-
-%if 0%{?with_python3}
 %{__python3} setup.py test
-%endif # with_python3
 
 
 %files -n python2-%{srcname}
@@ -91,15 +78,17 @@ rm -rf %{srcname}.egg-info
 %{python2_sitelib}/%{srcname}
 %{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 
-%if 0%{?with_python3}
-%files -n python%{python3_pkgversion}-%{srcname}
+%files -n python3-%{srcname}
 %license LICENSE.rst
 %doc README.rst HISTORY.rst
 %{python3_sitelib}/%{srcname}
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
-%endif # with_python3
 
 %changelog
+* Tue May 28 2019 Jeremy Cline <jcline@redhat.com> - 2.8-1
+- Update to v2.8
+- Drop python version conditionals
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
