@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        2.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -85,6 +85,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Thu Aug 15 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-3
+- Rebuilt for Python 3.8
+
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.8-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
