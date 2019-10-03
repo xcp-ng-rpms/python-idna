@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        2.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -85,6 +85,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-4
+- Rebuilt for Python 3.8.0rc1 (#1748018)
+
 * Thu Aug 15 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-3
 - Rebuilt for Python 3.8
 
