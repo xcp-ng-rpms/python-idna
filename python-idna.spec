@@ -1,9 +1,8 @@
-%global with_python3 1
 %global srcname idna
 
 Name:           python-%{srcname}
 Version:        2.8
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -11,26 +10,10 @@ URL:            https://github.com/kjd/idna
 Source0:        https://pypi.io/packages/source/i/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python2-devel
-BuildRequires:  python2-setuptools
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 
 %description
-A library to support the Internationalised Domain Names in Applications (IDNA)
-protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
-version of the protocol is often referred to as "IDNA2008" and can produce
-different results from the earlier standard from 2003.
-
-The library is also intended to act as a suitable drop-in replacement for the
-"encodings.idna" module that comes with the Python standard library but
-currently only supports the older 2003 specification.
-
-%package -n python2-%{srcname}
-Summary:        Internationalized Domain Names in Applications (IDNA)
-%{?python_provide:%python_provide python2-%{srcname}}
-
-%description -n python2-%{srcname}
 A library to support the Internationalised Domain Names in Applications (IDNA)
 protocol as specified in RFC 5891 <http://tools.ietf.org/html/rfc5891>.  This
 version of the protocol is often referred to as "IDNA2008" and can produce
@@ -60,23 +43,14 @@ currently only supports the older 2003 specification.
 rm -rf %{srcname}.egg-info
 
 %build
-%py2_build
 %py3_build
 
 %install
 %py3_install
-%py2_install
 
 %check
-%{__python2} setup.py test
 %{__python3} setup.py test
 
-
-%files -n python2-%{srcname}
-%license LICENSE.rst
-%doc README.rst HISTORY.rst
-%{python2_sitelib}/%{srcname}
-%{python2_sitelib}/%{srcname}-%{version}-py%{python2_version}.egg-info
 
 %files -n python3-%{srcname}
 %license LICENSE.rst
@@ -85,6 +59,10 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Sun Nov 24 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-5
+- Subpackage python2-idna has been removed
+  See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
+
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-4
 - Rebuilt for Python 3.8.0rc1 (#1748018)
 
