@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        2.8
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -59,6 +59,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.8-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Sun Nov 24 2019 Miro Hrončok <mhroncok@redhat.com> - 2.8-5
 - Subpackage python2-idna has been removed
   See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
