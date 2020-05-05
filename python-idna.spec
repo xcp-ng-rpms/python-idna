@@ -1,8 +1,8 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        2.8
-Release:        6%{?dist}
+Version:        2.9
+Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -59,6 +59,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Tue May 05 2020 Lumír Balhar <lbalhar@redhat.com> - 2.9-1
+- Update to 2.9 (#1803654)
+
 * Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.8-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
