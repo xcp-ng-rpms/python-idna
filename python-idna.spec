@@ -1,8 +1,8 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        2.9
-Release:        2%{?dist}
+Version:        2.10
+Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -59,6 +59,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Tue Jul 07 2020 Lumír Balhar <lbalhar@redhat.com> - 2.10-1
+- Update to 2.10 (#1851653)
+
 * Fri May 22 2020 Miro Hrončok <mhroncok@redhat.com> - 2.9-2
 - Rebuilt for Python 3.9
 
