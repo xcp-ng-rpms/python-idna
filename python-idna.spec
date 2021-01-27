@@ -2,7 +2,7 @@
 
 Name:           python-%{srcname}
 Version:        2.10
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
 License:        BSD and Python and Unicode
@@ -59,6 +59,9 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.10-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 2.10-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
