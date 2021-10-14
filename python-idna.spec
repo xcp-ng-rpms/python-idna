@@ -1,7 +1,7 @@
 %global srcname idna
 
 Name:           python-%{srcname}
-Version:        3.2
+Version:        3.3
 Release:        1%{?dist}
 Summary:        Internationalized Domain Names in Applications (IDNA)
 
@@ -59,6 +59,10 @@ rm -rf %{srcname}.egg-info
 %{python3_sitelib}/%{srcname}-%{version}-py%{python3_version}.egg-info
 
 %changelog
+* Thu Oct 14 2021 Lumír Balhar <lbalhar@redhat.com> - 3.3-1
+- Update to 3.3
+Resolves: rhbz#2013470
+
 * Tue Aug 03 2021 Lumír Balhar <lbalhar@redhat.com> - 3.2-1
 - Update to 3.2
 Resolves: rhbz#1965774
